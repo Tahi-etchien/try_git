@@ -1165,7 +1165,7 @@
 
     cart.forEach((item, i) => {
         // Crée l'URL complète de l'image sur GitHub Pages
-        const imageUrl = `https://tahi-etchien.github.io/Rimka-Shop/${item.imageName}`;
+        const imageUrl = `https://tahi-etchien.github.io/Rimka-Shop/${item.image}`;
         
         msg += `${i + 1}. ${item.name} x${item.quantity} - €${(item.price * item.quantity).toFixed(2)}%0A`;
         msg += `Image: ${imageUrl}%0A`;  // Ajoute le lien de l'image dans le message
