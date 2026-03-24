@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        /* ... (garde tous les styles identiques à la version précédente) ... */
         :root {
             --noir-absolu: #0a0a0a;
             --noir-charbon: #121212;
@@ -283,7 +284,7 @@
             transition: all var(--transition-fast); backdrop-filter: blur(5px);
         }
         .action-btn:hover { background: var(--or-sombre); color: var(--noir-absolu); border-color: var(--or-sombre); transform: scale(1.1); }
-        .action-btn.favoris-actif { background: #e74c3c; color: #fff; border-color: #e74c3c; }
+        .action-btn.favoris-actif { background: #ff4d6d; color: #fff; border-color: #ff4d6d; }
 
         /* MODAL APERCU */
         .modal-apercu {
@@ -342,8 +343,8 @@
             text-transform: uppercase; letter-spacing: 0.1em;
             transition: all var(--transition-normal);
         }
-        .modal-btn-favoris:hover { border-color: #e74c3c; color: #e74c3c; }
-        .modal-btn-favoris.actif { background: #e74c3c; border-color: #e74c3c; color: #fff; }
+        .modal-btn-favoris:hover { border-color: #ff4d6d; color: #ff4d6d; }
+        .modal-btn-favoris.actif { background: #ff4d6d; border-color: #ff4d6d; color: #fff; }
         .modal-close {
             position: absolute; top: 15px; right: 15px; z-index: 20;
             width: 36px; height: 36px; border-radius: 50%;
@@ -460,7 +461,7 @@
         .cart-item-image-sombre img { width:100%; height:100%; object-fit:cover; }
         .cart-item-details-sombre { flex:1; display:flex; flex-direction:column; justify-content:space-between; }
         .cart-item-title-sombre { font-weight:600; font-size:0.95rem; margin-bottom:5px; }
-        .cart-item-meta-sombre { font-size:0.8rem; color:var(--gris-platine); margin-bottom:10px; }
+        .cart-item-size-sombre { font-size:0.8rem; color:var(--or-sombre); margin-bottom:5px; font-weight:500; }
         .cart-item-actions-sombre { display:flex; align-items:center; justify-content:space-between; }
         .cart-item-quantity-sombre { display:flex; align-items:center; gap:10px; }
         .quantity-btn-sombre {
@@ -521,7 +522,7 @@
         .favorites-empty i { font-size:3rem; margin-bottom:20px; color:var(--gris-anthracite); display:block; }
         .fav-item {
             display:flex; gap:var(--space-sm); padding:var(--space-sm) 0;
-            border-bottom:1px solid var(--gris-anthracite); align-items:center;
+            border-bottom:1px solid var(--gris-anthracite); align-items:flex-start;
         }
         .fav-item-img {
             width:70px; height:90px; border-radius:var(--radius-sm);
@@ -530,20 +531,41 @@
         .fav-item-img img { width:100%; height:100%; object-fit:cover; }
         .fav-item-info { flex:1; }
         .fav-item-name { font-size:0.95rem; font-weight:600; margin-bottom:4px; }
-        .fav-item-price { font-size:0.9rem; color:var(--or-sombre); font-weight:700; }
-        .fav-item-actions { display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
-        .fav-add-cart {
+        .fav-item-price { font-size:0.9rem; color:var(--or-sombre); font-weight:700; margin-bottom:12px; }
+        .fav-size-selector { margin-bottom:12px; }
+        .fav-size-label { font-size:0.65rem; color:var(--gris-platine); letter-spacing:0.1em; margin-bottom:8px; display:block; }
+        .fav-size-buttons { display:flex; flex-wrap:wrap; gap:6px; }
+        .fav-size-btn {
+            padding:4px 10px; border-radius:var(--radius-sm);
+            border:1px solid var(--gris-anthracite); background:var(--noir-velours);
+            color:var(--gris-platine); font-size:0.7rem; font-weight:500;
+            cursor:pointer; transition:all var(--transition-fast);
+        }
+        .fav-size-btn:hover { border-color:var(--or-sombre); color:var(--blanc-creme); }
+        .fav-size-btn.active {
             background:linear-gradient(135deg, var(--or-sombre), var(--cuivre));
-            color:var(--noir-absolu); border:none; padding:7px 12px;
-            border-radius:var(--radius-sm); font-size:0.75rem; font-weight:700;
-            cursor:pointer; transition:all 0.2s; white-space:nowrap;
+            color:var(--noir-absolu); border-color:transparent;
         }
-        .fav-add-cart:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(184,154,90,0.3); }
         .fav-remove {
-            background:none; border:none; color:#ff6b6b;
-            cursor:pointer; font-size:0.85rem; padding:4px; transition:transform 0.2s;
+            background:linear-gradient(135deg, #ff4d6d, #c9184a);
+            color:#fff; border:none; padding:8px 12px;
+            border-radius:var(--radius-sm); font-size:0.7rem; font-weight:700;
+            cursor:pointer; transition:all 0.2s; width:100%;
+            display:flex; align-items:center; justify-content:center; gap:6px;
+            margin-top:8px;
         }
-        .fav-remove:hover { transform:scale(1.2); }
+        .fav-remove:hover { transform:translateY(-2px); box-shadow:0 4px 12px rgba(255,77,109,0.3); background:linear-gradient(135deg, #ff6b8b, #e74c3c); }
+        
+        /* Bouton ajouter tous les favoris au panier */
+        .add-all-to-cart-btn {
+            background:linear-gradient(135deg, var(--or-sombre), var(--cuivre));
+            color:var(--noir-absolu); border:none; padding:14px;
+            border-radius:var(--radius-sm); font-weight:700; font-size:0.85rem;
+            cursor:pointer; transition:all 0.2s; width:100%;
+            display:flex; align-items:center; justify-content:center; gap:10px;
+            margin-top:8px;
+        }
+        .add-all-to-cart-btn:hover { transform:translateY(-2px); box-shadow:0 8px 25px rgba(184,154,90,0.3); }
 
         /* BACKDROP */
         .backdrop-sombre {
@@ -601,12 +623,10 @@
                     <li><a href="apropos.html" class="nav-link-sombre">À Propos</a></li>
                 </ul>
                 <div class="nav-actions-sombre">
-                    <!-- ICONE FAVORIS -->
                     <div class="nav-icon-sombre" id="favIcon" style="position:relative;">
                         <i class="fas fa-heart"></i>
                         <span class="fav-count" id="favCount">0</span>
                     </div>
-                    <!-- ICONE PANIER -->
                     <div class="nav-icon-sombre" id="cartIcon">
                         <i class="fas fa-shopping-bag"></i>
                         <span class="cart-count-sombre" id="cartCount">0</span>
@@ -662,8 +682,8 @@
             </div>
         </div>
         <div class="cart-footer-sombre">
-            <button class="whatsapp-order-sombre" id="whatsappFavoris">
-                <i class="fab fa-whatsapp"></i> Commander mes favoris
+            <button class="add-all-to-cart-btn" id="addAllFavoritesToCart">
+                <i class="fas fa-shopping-bag"></i> Ajouter tous au panier
             </button>
         </div>
     </div>
@@ -904,30 +924,56 @@
     <script>
         // ======== DONNÉES PRODUITS ========
         const produits = [
-            { id: 0, nom: "Maillot PSG", cat: "Homme", prix: "10 000 CFA", badge: "NOUVEAU", img: "accueil/Nouveaute/Maillot_psg.png", desc: "Maillot officiel PSG, coupe moderne et matière respirante.", objectFit: "fill" },
-            { id: 1, nom: "Ensemble deux pièces", cat: "Homme", prix: "13 000 CFA", badge: "NOUVEAU", img: "accueil/Nouveaute/Ensemble_deux_piece.png", desc: "Ensemble deux pièces élégant, parfait pour toutes occasions.", objectFit: "fill" },
-            { id: 2, nom: "Baskets Luxury Chunky", cat: "Homme", prix: "10 000 CFA", badge: "NOUVEAU", img: "accueil/Nouveaute/Baskets_Luxury_Chunky.png", desc: "Baskets chunky au style luxueux, confort et élégance.", objectFit: "cover" },
-            { id: 3, nom: "Ensemble Urbain 4 Pièces", cat: "Homme", prix: "20 000 CFA", badge: "EXCLUSIF", img: "accueil/Nouveaute/Ensemble_Urbain_4_Pieces.jpeg", desc: "Set complet 4 pièces pour un look urbain et raffiné.", objectFit: "fill" },
+            { id: 0, nom: "Maillot PSG", cat: "Homme", prix: "10 000 CFA", prixNum: 10000, badge: "NOUVEAU", img: "accueil/Nouveaute/Maillot_psg.png", desc: "Maillot officiel PSG, coupe moderne et matière respirante.", objectFit: "fill" },
+            { id: 1, nom: "Ensemble deux pièces", cat: "Homme", prix: "13 000 CFA", prixNum: 13000, badge: "NOUVEAU", img: "accueil/Nouveaute/Ensemble_deux_piece.png", desc: "Ensemble deux pièces élégant, parfait pour toutes occasions.", objectFit: "fill" },
+            { id: 2, nom: "Baskets Luxury Chunky", cat: "Homme", prix: "10 000 CFA", prixNum: 10000, badge: "NOUVEAU", img: "accueil/Nouveaute/Baskets_Luxury_Chunky.png", desc: "Baskets chunky au style luxueux, confort et élégance.", objectFit: "cover" },
+            { id: 3, nom: "Ensemble Urbain 4 Pièces", cat: "Homme", prix: "20 000 CFA", prixNum: 20000, badge: "EXCLUSIF", img: "accueil/Nouveaute/Ensemble_Urbain_4_Pieces.jpeg", desc: "Set complet 4 pièces pour un look urbain et raffiné.", objectFit: "fill" },
         ];
 
-        // ======== FAVORIS ========
+        // Tailles disponibles par catégorie
+        const sizesMap = {
+            "Homme": ["S", "M", "L", "XL", "XXL"],
+            "Femme": ["XS", "S", "M", "L", "XL"],
+            "Enfant": ["2 ans", "4 ans", "6 ans", "8 ans", "10 ans"]
+        };
+
+        // ======== FAVORIS AVEC GESTION DES TAILLES ========
         let favorites = JSON.parse(localStorage.getItem('enFavorites')) || [];
+        let favSelectedSizes = JSON.parse(localStorage.getItem('favSelectedSizes')) || {};
 
         function toggleFavoris(btn, id) {
             const p = produits[id];
             const exists = favorites.find(f => f.id === id);
             if (exists) {
                 favorites = favorites.filter(f => f.id !== id);
+                delete favSelectedSizes[id];
                 btn.classList.remove('favoris-actif');
                 showToast('💔 Retiré des favoris');
             } else {
                 favorites.push(p);
+                if (!favSelectedSizes[id]) {
+                    favSelectedSizes[id] = null;
+                }
                 btn.classList.add('favoris-actif');
                 showToast('❤️ Ajouté aux favoris');
             }
             localStorage.setItem('enFavorites', JSON.stringify(favorites));
+            localStorage.setItem('favSelectedSizes', JSON.stringify(favSelectedSizes));
             updateFavCount();
             syncModalFavoris(id);
+            renderFavorites();
+            
+            // Mettre à jour tous les autres boutons cœur sur la page
+            document.querySelectorAll('.action-btn').forEach(otherBtn => {
+                const oc = otherBtn.getAttribute('onclick');
+                if (oc && oc.includes('toggleFavoris') && oc.includes(`,${id}`)) {
+                    if (exists) {
+                        otherBtn.classList.remove('favoris-actif');
+                    } else {
+                        otherBtn.classList.add('favoris-actif');
+                    }
+                }
+            });
         }
 
         function updateFavCount() {
@@ -949,6 +995,12 @@
             }
         }
 
+        function updateFavSize(id, size) {
+            favSelectedSizes[id] = size;
+            localStorage.setItem('favSelectedSizes', JSON.stringify(favSelectedSizes));
+            renderFavorites();
+        }
+
         function renderFavorites() {
             const container = document.getElementById('favoritesItems');
             container.innerHTML = '';
@@ -956,54 +1008,141 @@
                 container.innerHTML = '<div class="favorites-empty"><i class="fas fa-heart"></i><p>Aucun favori pour l\'instant</p></div>';
                 return;
             }
+            
             favorites.forEach(p => {
+                const sizes = sizesMap[p.cat] || ["S", "M", "L", "XL"];
+                const currentSize = favSelectedSizes[p.id] || null;
+                
                 const el = document.createElement('div');
                 el.className = 'fav-item';
+                
+                let sizeButtonsHtml = '';
+                sizes.forEach(size => {
+                    const isActive = (currentSize === size);
+                    sizeButtonsHtml += `<button class="fav-size-btn ${isActive ? 'active' : ''}" data-size="${size}">${size}</button>`;
+                });
+                
                 el.innerHTML = `
                     <div class="fav-item-img">
-                        <img src="${p.img}" alt="${p.nom}" style="object-fit:${p.objectFit};">
+                        <img src="${p.img}" alt="${p.nom}" style="object-fit:${p.objectFit || 'cover'};">
                     </div>
                     <div class="fav-item-info">
                         <div class="fav-item-name">${p.nom}</div>
                         <div class="fav-item-price">${p.prix}</div>
-                    </div>
-                    <div class="fav-item-actions">
-                        <button class="fav-add-cart" onclick="addToCart({id:${p.id},name:'${p.nom}',price:${parseInt(p.prix.replace(/\s/g,''))},image:'${p.img}',quantity:1});showToast('🛍️ Ajouté au panier');">
-                            <i class="fas fa-shopping-bag"></i> Panier
-                        </button>
-                        <button class="fav-remove" onclick="removeFavorite(${p.id})">
-                            <i class="fas fa-times"></i> Retirer
+                        <div class="fav-size-selector">
+                            <div class="fav-size-label">TAILLE</div>
+                            <div class="fav-size-buttons" data-id="${p.id}">
+                                ${sizeButtonsHtml}
+                            </div>
+                        </div>
+                        <button class="fav-remove" data-id="${p.id}">
+                            <i class="fas fa-trash-alt"></i> Retirer des favoris
                         </button>
                     </div>`;
+                
                 container.appendChild(el);
+            });
+            
+            // Événements pour les boutons de taille
+            container.querySelectorAll('.fav-size-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const sizeDiv = btn.closest('.fav-size-buttons');
+                    const id = parseInt(sizeDiv.dataset.id);
+                    const size = btn.dataset.size;
+                    
+                    sizeDiv.querySelectorAll('.fav-size-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    updateFavSize(id, size);
+                });
+            });
+            
+            // Événements pour retirer des favoris
+            container.querySelectorAll('.fav-remove').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const id = parseInt(btn.dataset.id);
+                    removeFavorite(id);
+                });
             });
         }
 
         function removeFavorite(id) {
-            favorites = favorites.filter(f => f.id !== id);
-            localStorage.setItem('enFavorites', JSON.stringify(favorites));
-            updateFavCount();
-            renderFavorites();
-            document.querySelectorAll('.action-btn').forEach(btn => {
-                const oc = btn.getAttribute('onclick');
-                if (oc && oc.includes('toggleFavoris') && oc.includes(`,${id}`)) {
-                    btn.classList.remove('favoris-actif');
-                }
-            });
-            showToast('💔 Retiré des favoris');
+    favorites = favorites.filter(f => f.id !== id);
+    delete favSelectedSizes[id];
+    localStorage.setItem('enFavorites', JSON.stringify(favorites));
+    localStorage.setItem('favSelectedSizes', JSON.stringify(favSelectedSizes));
+    updateFavCount();
+    renderFavorites();
+
+    // ✅ CORRIGÉ : détection robuste par regex pour tout format d'id
+    document.querySelectorAll('.action-btn').forEach(btn => {
+        const oc = btn.getAttribute('onclick');
+        if (oc && oc.includes('toggleFavoris')) {
+            const match = oc.match(/toggleFavoris\s*\([^,]+,\s*(\d+)\s*\)/);
+            if (match && parseInt(match[1]) === id) {
+                btn.classList.remove('favoris-actif');
+            }
         }
+    });
+
+    syncModalFavoris(id);
+    showToast('💔 Retiré des favoris');
+}
 
         // Restaurer état boutons favoris au chargement
-        document.querySelectorAll('.action-btn').forEach(btn => {
-            const oc = btn.getAttribute('onclick');
-            if (oc && oc.includes('toggleFavoris')) {
-                const match = oc.match(/,\s*(\d+)/);
-                if (match) {
-                    const id = parseInt(match[1]);
-                    if (favorites.find(f => f.id === id)) btn.classList.add('favoris-actif');
+        function restoreFavoriteButtons() {
+            document.querySelectorAll('.action-btn').forEach(btn => {
+                const oc = btn.getAttribute('onclick');
+                if (oc && oc.includes('toggleFavoris')) {
+                    const match = oc.match(/,\s*(\d+)/);
+                    if (match) {
+                        const id = parseInt(match[1]);
+                        if (favorites.find(f => f.id === id)) {
+                            btn.classList.add('favoris-actif');
+                        } else {
+                            btn.classList.remove('favoris-actif');
+                        }
+                    }
                 }
-            }
+            });
+        }
+
+        // Ajouter tous les favoris au panier
+        function addAllFavoritesToCart() {
+    if (favorites.length === 0) {
+        showToast('Aucun favori à ajouter au panier');
+        return;
+    }
+    
+    let addedCount = 0;
+    favorites.forEach(fav => {
+        const size = favSelectedSizes[fav.id] || null;
+        addToCart({
+            id: fav.id,
+            name: fav.nom,
+            price: fav.prixNum,
+            image: fav.img,
+            quantity: 1,
+            size: size
         });
+        addedCount++;
+    });
+
+    // ✅ NOUVEAU : réinitialiser les favoris
+    favorites = [];
+    favSelectedSizes = {};
+    localStorage.setItem('enFavorites', JSON.stringify(favorites));
+    localStorage.setItem('favSelectedSizes', JSON.stringify(favSelectedSizes));
+    updateFavCount();
+    renderFavorites();
+    restoreFavoriteButtons(); // remet tous les cœurs à l'état initial
+
+    showToast(`✅ ${addedCount} article(s) ajouté(s) au panier`);
+
+    document.getElementById('favoritesSidebar').classList.remove('active');
+    backdrop.classList.remove('active');
+}
 
         // ======== APERCU RAPIDE ========
         function ouvrirApercu(id) {
@@ -1022,21 +1161,26 @@
 
             btnFav.onclick = () => {
                 const exists = favorites.find(f => f.id === id);
-                if (!exists) { favorites.push(produits[id]); showToast('❤️ Ajouté aux favoris'); }
-                else { favorites = favorites.filter(f => f.id !== id); showToast('💔 Retiré des favoris'); }
+                if (!exists) { 
+                    favorites.push(produits[id]); 
+                    if (!favSelectedSizes[id]) favSelectedSizes[id] = null;
+                    showToast('❤️ Ajouté aux favoris'); 
+                }
+                else { 
+                    favorites = favorites.filter(f => f.id !== id); 
+                    delete favSelectedSizes[id];
+                    showToast('💔 Retiré des favoris'); 
+                }
                 localStorage.setItem('enFavorites', JSON.stringify(favorites));
+                localStorage.setItem('favSelectedSizes', JSON.stringify(favSelectedSizes));
                 syncModalFavoris(id);
                 updateFavCount();
-                document.querySelectorAll('.action-btn').forEach(btn => {
-                    const oc = btn.getAttribute('onclick');
-                    if (oc && oc.includes('toggleFavoris') && oc.includes(`,${id}`)) {
-                        favorites.find(f => f.id === id) ? btn.classList.add('favoris-actif') : btn.classList.remove('favoris-actif');
-                    }
-                });
+                renderFavorites();
+                restoreFavoriteButtons();
             };
 
             document.getElementById('modalBtnPanier').onclick = () => {
-                addToCart({ id: p.id, name: p.nom, price: parseInt(p.prix.replace(/\s/g, '')), image: p.img, quantity: 1 });
+                addToCart({ id: p.id, name: p.nom, price: p.prixNum, image: p.img, quantity: 1, size: null });
                 fermerApercu();
             };
 
@@ -1053,23 +1197,19 @@
 
         // ======== SIDEBAR FAVORIS ========
         document.getElementById('favIcon').addEventListener('click', () => {
+            renderFavorites();
             document.getElementById('favoritesSidebar').classList.add('active');
             backdrop.classList.add('active');
-            renderFavorites();
         });
         document.getElementById('closeFavorites').addEventListener('click', () => {
             document.getElementById('favoritesSidebar').classList.remove('active');
             backdrop.classList.remove('active');
         });
-        document.getElementById('whatsappFavoris').addEventListener('click', () => {
-            if (favorites.length === 0) return;
-            const phone = "+33123456789";
-            let msg = "Bonjour Rimka Shop,%0A%0AMes favoris :%0A";
-            favorites.forEach((p, i) => { msg += `${i+1}. ${p.nom} - ${p.prix}%0A`; });
-            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-        });
+        
+        // Bouton pour ajouter tous les favoris au panier
+        document.getElementById('addAllFavoritesToCart').addEventListener('click', addAllFavoritesToCart);
 
-        // ======== PANIER ========
+        // ======== PANIER AVEC SUPPORT DES TAILLES ========
         let cart = JSON.parse(localStorage.getItem('enCart')) || [];
         const cartIcon = document.getElementById('cartIcon');
         const cartSidebar = document.getElementById('cartSidebar');
@@ -1077,12 +1217,19 @@
         const backdrop = document.getElementById('backdrop');
 
         function addToCart(item) {
-            const existing = cart.find(i => i.id === item.id);
-            if (existing) existing.quantity++;
-            else cart.push(item);
+            const existingIndex = cart.findIndex(i => i.id === item.id && i.size === item.size);
+            
+            if (existingIndex !== -1) {
+                cart[existingIndex].quantity++;
+            } else {
+                cart.push(item);
+            }
+            
             localStorage.setItem('enCart', JSON.stringify(cart));
             updateCartCount();
-            showToast('🛍️ Produit ajouté au panier');
+            
+            const sizeText = item.size ? ` (taille ${item.size})` : ` (taille non mentionnée)`;
+            showToast(`🛍️ ${item.name}${sizeText} ajouté au panier`);
         }
 
         function updateCartCount() {
@@ -1102,7 +1249,7 @@
                 return;
             }
             let subtotal = 0;
-            cart.forEach(item => {
+            cart.forEach((item, idx) => {
                 subtotal += item.price * item.quantity;
                 const el = document.createElement('div');
                 el.className = 'cart-item-sombre';
@@ -1110,34 +1257,39 @@
                     <div class="cart-item-image-sombre"><img src="${item.image}" alt="${item.name}"></div>
                     <div class="cart-item-details-sombre">
                         <div class="cart-item-title-sombre">${item.name}</div>
-                        <div class="cart-item-meta-sombre">Qté: ${item.quantity}</div>
+                        ${item.size ? `<div class="cart-item-size-sombre">Taille : ${item.size}</div>` : '<div class="cart-item-size-sombre">Taille : non mentionnée</div>'}
                         <div class="cart-item-actions-sombre">
                             <div class="cart-item-quantity-sombre">
-                                <button class="quantity-btn-sombre" onclick="updateQty(${item.id},-1)">-</button>
+                                <button class="quantity-btn-sombre" onclick="updateQty(${idx},-1)">-</button>
                                 <span style="color:var(--blanc-creme)">${item.quantity}</span>
-                                <button class="quantity-btn-sombre" onclick="updateQty(${item.id},1)">+</button>
+                                <button class="quantity-btn-sombre" onclick="updateQty(${idx},1)">+</button>
                             </div>
                             <div class="cart-item-price-sombre">${(item.price*item.quantity).toLocaleString()} CFA</div>
                         </div>
                     </div>
-                    <button class="remove-item-sombre" onclick="removeItem(${item.id})"><i class="fas fa-times"></i></button>`;
+                    <button class="remove-item-sombre" onclick="removeItem(${idx})"><i class="fas fa-times"></i></button>`;
                 items.appendChild(el);
             });
             document.getElementById('cartSubtotal').textContent = `${subtotal.toLocaleString()} CFA`;
             document.getElementById('cartTotal').textContent = `${subtotal.toLocaleString()} CFA`;
         }
 
-        function updateQty(id, change) {
-            const item = cart.find(i => i.id === id);
-            if(item) { item.quantity += change; if(item.quantity <= 0) cart = cart.filter(i => i.id !== id); }
+        function updateQty(index, change) {
+            if (!cart[index]) return;
+            cart[index].quantity += change;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
             localStorage.setItem('enCart', JSON.stringify(cart));
-            updateCartCount(); renderCart();
+            updateCartCount();
+            renderCart();
         }
 
-        function removeItem(id) {
-            cart = cart.filter(i => i.id !== id);
+        function removeItem(index) {
+            cart.splice(index, 1);
             localStorage.setItem('enCart', JSON.stringify(cart));
-            updateCartCount(); renderCart();
+            updateCartCount();
+            renderCart();
         }
 
         cartIcon.addEventListener('click', () => {
@@ -1150,7 +1302,6 @@
             backdrop.classList.remove('active');
         });
 
-        // UN SEUL backdrop pour tout fermer
         backdrop.addEventListener('click', () => {
             cartSidebar.classList.remove('active');
             document.getElementById('favoritesSidebar').classList.remove('active');
@@ -1158,25 +1309,33 @@
         });
 
         document.getElementById('whatsappOrder').addEventListener('click', () => {
-    if (cart.length === 0) return;
+            if (cart.length === 0) {
+                showToast('Votre panier est vide');
+                return;
+            }
 
-    const phone = "+2250767310852";
-    let msg = "Bonjour Édition Noire,%0A%0ACommande :%0A";
+            const phone = "+2250767310852";
+            let msg = "Bonjour Rimka Shop,%0A%0A*Commande :*%0A%0A";
 
-    cart.forEach((item, i) => {
-        // Crée l'URL complète de l'image sur GitHub Pages
-        const imageUrl = `https://tahi-etchien.github.io/Rimka-Shop/${item.imag}`;
-        
-        msg += `${i + 1}. ${item.name} x${item.quantity} - €${(item.price * item.quantity).toFixed(2)}%0A`;
-        msg += `Image: ${imageUrl}%0A`;  // Ajoute le lien de l'image dans le message
-    });
+            cart.forEach((item, i) => {
+                const sizeText = item.size ? ` (Taille ${item.size})` : ' (Taille non mentionnée)';
+                const imageUrl = `https://tahi-etchien.github.io/Rimka-Shop/${item.image}`;
+                msg += `${i + 1}. *${item.name}*${sizeText} x${item.quantity} - ${(item.price * item.quantity).toLocaleString()} CFA%0A`;
+                msg += `Image: ${imageUrl}%0A%0A`;
+            });
 
-    const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
-    msg += `%0ATotal : €${total.toFixed(2)}`;
+            const total = cart.reduce((s, i) => s + i.price * i.quantity, 0);
+            msg += `*Total : ${total.toLocaleString()} CFA*`;
 
-    // Ouvre WhatsApp avec le message
-    window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-});
+            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
+            
+            cart = [];
+            localStorage.setItem('enCart', JSON.stringify(cart));
+            updateCartCount();
+            renderCart();
+            
+            showToast('✅ Commande envoyée ! Panier vidé.');
+        });
 
         // ======== TOAST ========
         function showToast(msg) {
@@ -1205,6 +1364,8 @@
         // ======== INIT ========
         updateCartCount();
         updateFavCount();
+        renderFavorites();
+        restoreFavoriteButtons();
     </script>
 </body>
 </html>
