@@ -826,7 +826,7 @@
                         <div class="contact-icon"><i class="fas fa-phone"></i></div>
                         <div>
                             <div class="contact-item-title">Téléphone</div>
-                            <div class="contact-item-text"><a href="tel:+2250767310852">+225 07 67 31 08 52</a></div>
+                            <div class="contact-item-text"><a href="tel:+2250503939253">+225 05 03 93 92 53</a></div>
                         </div>
                     </div>
                     <div class="contact-item">
@@ -893,7 +893,7 @@
                     <div class="footer-col-title-sombre">Contact</div>
                     <div class="footer-links-sombre">
                         <a href="mailto:GHJ@gmail.com" class="footer-link-sombre">GHJ@gmail.com</a>
-                        <a href="tel:+2250767310852" class="footer-link-sombre">+225 07 67 31 08 52</a>
+                        <a href="tel:+2250503939253" class="footer-link-sombre">+225 05 03 93 92 53</a>
                     </div>
                 </div>
             </div>
@@ -1040,7 +1040,7 @@
         /* ── WhatsApp ─── */
         document.getElementById('whatsappOrder').addEventListener('click',()=>{
             if(!cart.length){ showToast('Votre panier est vide'); return; }
-            const phone='+2250767310852';
+            const phone='+2250503939253';
             let msg='Bonjour Rimka Shop,%0A%0A*Commande :*%0A%0A';
             cart.forEach((item,i)=>{
     const sizeText = item.size ? ` (Taille ${item.size})` : '';
@@ -1062,7 +1062,7 @@
             const subject=document.getElementById('subject').value;
             const message=document.getElementById('message').value;
             if(!firstName||!lastName||!email||!message){ alert('Veuillez remplir tous les champs obligatoires.'); return; }
-            const phone='+2250767310852';
+            const phone='+2250503939253';
             let msg=`Bonjour Rimka Shop,%0A%0A*Nouveau message depuis le site web*%0A%0A*Nom :* ${firstName} ${lastName}%0A*Email :* ${email}%0A*Sujet :* ${subject}%0A*Message :*%0A${message}`;
             window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
             document.getElementById('firstName').value=''; document.getElementById('lastName').value='';
