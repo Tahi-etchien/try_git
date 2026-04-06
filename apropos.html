@@ -634,7 +634,7 @@
         <div class="cart-footer-sombre">
             <div class="cart-totals-sombre">
                 <div class="cart-total-row-sombre"><span>Sous-total</span><span id="cartSubtotal">0 CFA</span></div>
-                <div class="cart-total-row-sombre"><span>Livraison</span><span>Gratuite</span></div>
+                <div class="cart-total-row-sombre"><span>Livraison</span><span></span></div>
                 <div class="cart-total-row-sombre cart-total-final-sombre"><span>Total</span><span id="cartTotal">0 CFA</span></div>
             </div>
             <button class="whatsapp-order-sombre" id="whatsappOrder">
@@ -1042,7 +1042,12 @@
             if(!cart.length){ showToast('Votre panier est vide'); return; }
             const phone='+2250767310852';
             let msg='Bonjour Rimka Shop,%0A%0A*Commande :*%0A%0A';
-            cart.forEach((item,i)=>{ msg+=`${i+1}. *${item.name}*${item.size?` (Taille ${item.size})`:''} x${item.quantity} - ${(item.price*item.quantity).toLocaleString()} CFA%0A`; });
+            cart.forEach((item,i)=>{
+    const sizeText = item.size ? ` (Taille ${item.size})` : '';
+    const imageUrl = item.image.startsWith('http') ? item.image : `https://Tahi-etchien.github.io/Rimka-Shop/${item.image}`;
+    msg += `${i+1}. *${item.name}*${sizeText} x${item.quantity} - ${(item.price*item.quantity).toLocaleString()} CFA%0A`;
+    msg += `   🖼️ ${encodeURIComponent(imageUrl)}%0A%0A`;
+});
             const total=cart.reduce((s,i)=>s+i.price*i.quantity,0);
             msg+=`%0A*Total : ${total.toLocaleString()} CFA*%0AMerci de confirmer ma commande ! 🙏`;
             window.open(`https://wa.me/${phone}?text=${msg}`,'_blank');
